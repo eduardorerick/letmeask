@@ -50,7 +50,7 @@ export function Room() {
     
     roomRef.on('value', room => {
       const databaseRoom = room.val();
-      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions;
 
       const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
         return {
@@ -61,7 +61,7 @@ export function Room() {
           isAnswered: value.isAnswered,
         }
       })
-
+      
       setTitle(databaseRoom.title)
       setQuestions(parsedQuestions)
     })
