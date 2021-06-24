@@ -48,6 +48,10 @@ export function Home() {
 
     history.push(`/rooms/${roomCode}`);
   }
+
+  function handleListRoom() {
+    history.push(`/RoomList`)
+  }
  
   return (
     <div id="page-auth">
@@ -72,6 +76,7 @@ export function Home() {
                 value={roomCode}
               />
               <Button type="submit">Entrar na sala</Button>
+              <Button type="submit" onClick={handleListRoom}>Lista de salas</Button>
             </form>
         </div>
       </main>
