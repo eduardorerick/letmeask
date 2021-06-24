@@ -207,7 +207,7 @@ e definimos o tipo do estado das perguntas:
       isHighlighted: boolean;
     }
 
-e passamos os valores para os estados ainda dentro de useEffect()
+e passamos os valores para os estados ainda dentro de <codeuseEffect()</code>
 
     setTitle(databaseRoom.title)
     setQuestions(parsedQuestions)
@@ -215,3 +215,216 @@ e passamos os valores para os estados ainda dentro de useEffect()
 
 
 Agora basta usarmos essas informações na interface. 
+
+
+<h1> Dia 4 </h1>
+
+
+<h2>Estrutura das perguntas HTML e CSS</h2>
+
+
+Foi feito um componente Question com HTML e CSS para servir como a div que vai conter as perguntas.
+Esse componente foi importado para Room.tsx onde foi feito um <code>.map()</code> nele.
+
+	{questions.map(question => {
+		      return (
+			<Question
+			  key={question.id}
+			  content={question.content}
+			  author={question.author}
+			/>
+		      )
+		    })}
+
+Agora todo item contido em questions vai retornar como um componente <code>Question</code>.
+
+<h2>Criando o hook useRoom</h2>
+
+Criamos uma função chamada <code>useRoom()</code> e agora temos que trazer todas as funcionalidades que vão ser utilizadas tanto na página do usuário quanto na página do admin .
+Então pegamos a parte de carregamento das questões 
+
+Passamos as funções de <code>useEffect()</code> do arquivo Room.tsx, suas tipagens, os estados:questions e title, e então exportamos dessa função <code>useRoom()</code> apenas as perguntas e os titulos, para que possamos importar de volta no Room.tsx.
+
+	
+	return { questions, title }. 
+
+	
+
+Mas para que o firebase consiga localizar aonde queremos fazer a referência no banco de dados é necessário do <code>roomId</code>, que é os pedaços dinâmicos do URL da página que colocamos como placeholder no path, precisamos passar essa rota para o <code>useRoom()</code>, então : <code>useRoom(roomId: string)</code>
+
+Agora quando usarmos o hook na page Room.tsx passamos o <code>roomId</code>, que é o id da pagina no Route que foi inserido pelo <code>handleCreateRoom</code> na page NewRoom.tsx
+
+	const { questions, title } = useRoom(roomId)
+
+Feito isso, o código na page Room.tsx já parece muito mais limpo e podemos aproveitar essa funcionalidade na página do admin!
+
+Criamos a page AdminRoom.tsx copiando toda a page Room.tsx, retiramos todo o <code>form</code> e adicionamos o componente <code>Button</code> no header. 
+
+No componente <code>Button</code> foi passado um type <code>{ isOutlined?: boolean }</code> e nas props da function agora podemos passar <code>({isOutlined = false, ...props})</code> 
+
+Então colocamos uma condicional no className:
+
+	
+	className={`button ${isOutlined? 'outlined' : ''}`}
+
+	
+E agora caso <code>isOutlined</code> seja <code>true</code> a classe outlined também é aplicada. 
+
+<h2>Criando funcionalidade de Like</h2>
+
+Depois de feito o CSS do botão do like, é criado na page Room.tsx uma função assíncrona que recebe a <code>questionId</code> e a informação se já foi dado o like ou não.
+
+	handleLikeQuestion(questionId:string, likeId: string | undefined) {}
+
+essa função vai fazer o push para a database com o authorId.
+
+Primeiro fazemos uma condição para saber se o usuário já deu o like ou não.
+
+	if (likeId) {
+	await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove()
+	}
+
+Caso retorne false então selecionamos a localização na database.
+
+	await database.ref(`rooms/${roomId}/questions/${questionId}/likes`)
+
+e enviamos os dados nessa localização
+
+	await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
+		authorId: user?.id,
+	})
+
+
+Para contarmos os números de likes é necessário voltarmos no nosso hook <code>useRoom()</code>
+
+Adicionamos a linha <code>likeCount: Object.values(value.likes ?? {}).length</code> para que a gente receba a quantidade de objetos com o <code>authorId</code> que foi passado anteriormente e o <code>?? {}</code> serve para caso não tenha nenhum. 
+
+E para acompanhar se o usuário deu like ou não precisamos pegar seus dados de autenticação com <code>useAuth()</code>
+
+	const { user } = useAuth() 
+
+Agora que temos o <code>user.id</code> adicionamos a linha 
+
+	likeId: Object.entries(value.likes ?? {}).find(([ key , like ]) => like.authorId === user?.id)?.[0]
+
+<code>.find()</code> percorre o array até encontrar uma condição que satisfaça o que passamos para ele, retornando seu conteúdo.
+
+<code>?.[0]</code> retorna nulo caso ele não ache nada na posição 0.
+
+Então pegamos cada um dos like e verificamos se o authorId é igual ao <code>user?.id</code>.
+
+Agora adicionamos cada um no QuestionType informando seus tipos. 
+
+	type QuestionType = {
+	  id:string;
+	  author: {
+	    name: string;
+	    avatar: string;
+	  }
+	  content: string; 
+	  isAnswered: boolean;
+	  isHighlighted: boolean;
+	  likeCount: number;
+	  likeId: string | undefined;
+	}
+
+E atualizamos também a tipagem no FirebaseQuestions
+
+	type FirebaseQuestions = Record<string, {
+	  author: {
+	    name: string;
+	    avatar: string;
+	  }
+	  content: string; 
+	  isAnswered: boolean;
+	  isHighlighted: boolean;
+	  likes: Record<string, {
+	    authorId:string;
+	  }>
+	}>
+
+para remover todos os event listener utilizamos 
+
+	return () => {
+	roomRef.off('value')
+	}
+
+E no final adicionamos <code>user?.id</code> no array de dependências, pois essa variável não está sendo definida dentro do <code>useEffect()</code>
+
+Então fica: 
+
+	useEffect(() => {
+	    const roomRef = database.ref(`rooms/${roomId}`);
+
+	    roomRef.on('value', room => {
+	      const databaseRoom = room.val();
+	      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+
+	      const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
+		return {
+		  id: key,
+		  content: value.content,
+		  author: value.author,
+		  isHighlighted: value.isHighlighted,
+		  isAnswered: value.isAnswered,
+		  likeCount: Object.values(value.likes ?? {}).length,
+		   likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
+		}
+	      })
+
+	      setTitle(databaseRoom.title)
+	      setQuestions(parsedQuestions)
+	    })
+
+	    return () => {
+	      roomRef.off('value')
+	    }
+	  }, [roomId, user?.id]) 
+
+
+Então agora no botão adicionamos uma classe para caso <code>likeId</code> retorne o Id do usuário.
+
+	className={`like-button ${question.likeId ? 'liked' : ''}`}
+
+E a função onClick:
+
+	onClick={() => handleLikeQuestion(question.id, question.likeId)}
+
+
+Pronto! a funcionalidade de dar like está completa. 
+
+
+<h2>Remoção de pergunta sem o modal</h2>
+
+Precisamos criar um botão dentro de <code><Questions></code>  que recebe a função <code>handleDeleteQuestion(question.id)</code>
+E essa função assíncrona que recebe uma string:
+
+	async function handleDeleteQuestion(questionId: string) {
+	    if (window.confirm('Tem certeza que deseja excluir essa pergunta?')) {
+	      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+	    }
+	}
+
+Se <code>window.confirm()</code> retornar <code>true</code>, ele acha a pergunta com a questionId na <code>.ref()</code> passada e remove a pergunta com <code>.remove()</code>
+
+
+Para encerrar a sala criamos uma função para fazer o update do objeto no banco de dados para conter a data que a sala foi encerrada e enviamos o usuário para a tela inicial do app, então:
+
+	 const history = useHistory()
+
+	 async function handleEndRoom () {
+	    database.ref(`rooms/${roomId}`).update({
+	      endedAt: new Date()
+	    })
+	    history.push('/')
+	 }
+
+E para evitar que pessoas entrem na sala colocamos no <code>handleJoinRoom()</code> do Home.tsx a seguinte condicional : 
+	
+	if (roomRef.val().endedAt) {
+	      alert('Room already closed');
+	      return;
+	    }
+	
+Fim do dia 4! Ufa!
+
