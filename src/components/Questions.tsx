@@ -19,7 +19,6 @@ export function Question({
   isAnswered = false,
   isHighlighted = false,
   children,
- 
 }: QuestionProps) {
   return(
     <div 

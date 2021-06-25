@@ -31,10 +31,11 @@ export function NewRoom() {
     const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
+      roomIsOpen: true,
     })
     history.push(`/admin/rooms/${firebaseRoom.key}`)
   }
-  
+    
   return (
     <div id="page-auth">
       <aside>

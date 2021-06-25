@@ -63,6 +63,7 @@ export function Room() {
   function handleGoHomePage() {
     return history.push('/')
   }
+
   
   return (
     <div id="page-room">
