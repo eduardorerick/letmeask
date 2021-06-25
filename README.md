@@ -1,5 +1,5 @@
 <h1> LetMeAsk  </h1>
-
+<img src=".github/letmeaskhome.png>" alt="Let me ask Home Page" title="Home page"/>
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a><br>
