@@ -464,3 +464,78 @@ Fim do dia 4! Ufa!
 
 
 ## Minhas alterações no projeto
+	
+	<h2> Criar a página de lista de salas </h2>
+	
+	
+Primeiro criei um estado para armazenar esses dados.
+	
+
+	const [rooms, setRooms] = useState<RoomType>([])
+	
+	
+para criar a página de lista de salas, criei o arquivo RoomList.tsx e usei o hook <code>useEffect()</code> para carregar os dados necessários para renderizar a sala. 
+	
+
+Peguei a referência do meu banco de dados. 
+	
+	const dbRef = database.ref(`rooms`);
+
+Então li todos os dados e retornei eles em um array contendo vários objetos.
+
+	dbRef.once('value', rooms => {
+	      const dbRoom: object = rooms.val() ?? {}
+	      const parsedRooms = Object.entries(dbRoom).map(([key,value]) => {
+		return {
+		  roomId: key,
+		  title: value.title,
+		  roomIsOpen: value.roomIsOpen
+		}
+	      })
+	      setRooms(parsedRooms)
+	})
+	
+Fiz as devidas tipagens de como eu queria esse objeto.
+	
+	type RoomType = {
+	  roomId:string;
+	  title: string;
+	  roomIsOpen?: boolean;
+	}[]
+	
+Agora só preciso utilizar <code>.map()</code> para me retornar as salas no formato que eu quero, porém, também quero mostrar algo caso não tenha nenhuma sala disponível.
+	
+Então crio a seguinte condicional: 
+	
+	{rooms.length !== 0 ? 
+		rooms.map((item: any) => {
+		  return(
+		    <div 
+		      className={`room-item-div ${item.roomIsOpen? '': 'closed'}`} 
+		      onClick={() => handleGoToRoom(item.roomId, item?.roomIsOpen)}
+		      key={item.roomId} >
+			  {item.title}
+		    </div>)}) 
+         : (
+		<div className="empty-list"> 
+		  <h1>Não temos salas no momento</h1>
+		  <img src={emptyImg} alt="Empty Room" />
+		</div>)}
+
+Agora, se rooms contém algum resultado vai aparecer: 
+	
+![Room List](.github/roomlist.png)
+	
+	
+	
+	
+E se não tiver resultado: 
+	
+	
+![Empty Room List](.github/emptyroomlist.png)
+	
+	
+<h2>Fechamento de salas</h2>
+	
+	
+	
