@@ -25,7 +25,7 @@ export function RoomList() {
     const dbRef = database.ref(`rooms`);
     dbRef.once('value', rooms => {
       const dbRoom: object = rooms.val() ?? {}
-      const parsedTitles = Object.entries(dbRoom).map(([key,value]) => {
+      const parsedRooms = Object.entries(dbRoom).map(([key,value]) => {
         return {
           roomId: key,
           title: value.title,
@@ -34,9 +34,9 @@ export function RoomList() {
       })
       console.log(dbRoom)
       console.log(Object.entries(dbRoom))
-      console.log(parsedTitles)
+      console.log(parsedRooms)
 
-      setRooms(parsedTitles)
+      setRooms(parsedRooms)
     })
 
   }, [])
@@ -54,14 +54,7 @@ export function RoomList() {
 
     //   return history.push(`rooms/${questionId}`)
   }
-
-  async function getDataFromRoom() {
-  const Data = await database.ref(`room/${rooms}`).get()
-  return Data
-  }
-
-  console.log(getDataFromRoom)
-  console.log(rooms)
+  
   return (
     <div id="page-room">
         <header>
