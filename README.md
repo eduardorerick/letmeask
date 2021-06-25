@@ -495,7 +495,7 @@ Então li todos os dados e retornei eles em um array contendo vários objetos.
 	      setRooms(parsedRooms)
 	})
 	
-Fiz as devidas tipagens de como eu queria esse objeto.
+Fiz as devidas tipagens de como eu queria esse objeto dentro do array.
 	
 	type RoomType = {
 	  roomId:string;
