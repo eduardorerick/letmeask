@@ -1,4 +1,10 @@
-<h1> LetMeAsk  </h1>
+<div align="center" >   
+
+![Letmeasklogo](.github/Logo.png)    
+
+</div>
+
+![Letmeask](.github/letmeaskhome.png)
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -7,7 +13,10 @@
   <a href="#dia-2">Dia 2</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#dia-3">Dia 3</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#dia-4">Dia 4</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-   <br> Aplicativo desenvolvido durante a NLW 
+  <a href="#dia-5">Dia 5</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <br>	
+  <a href="#minhas-alterações-no-projeto">Minhas alterações no projeto</a>
+   
 </p>
 
 
@@ -24,9 +33,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 O letmeask é um app desenvolvido durante a NLW que permite que alguém realizando lives crie uma sala para receber perguntas, tendo maior interação com o usuário.
-
-## Levando o App para o próximo nível
-
 
 
 ## Dia 1 
@@ -451,3 +457,85 @@ E para evitar que pessoas entrem na sala colocamos no <code>handleJoinRoom()</co
 	
 Fim do dia 4! Ufa!
 
+
+	
+
+## Dia 5 
+
+
+## Minhas alterações no projeto
+	
+	<h2> Criar a página de lista de salas </h2>
+	
+	
+Primeiro criei um estado para armazenar esses dados.
+	
+
+	const [rooms, setRooms] = useState<RoomType>([])
+	
+	
+para criar a página de lista de salas, criei o arquivo RoomList.tsx e usei o hook <code>useEffect()</code> para carregar os dados necessários para renderizar a sala. 
+	
+
+Peguei a referência do meu banco de dados. 
+	
+	const dbRef = database.ref(`rooms`);
+
+Então li todos os dados e retornei eles em um array contendo vários objetos.
+
+	dbRef.once('value', rooms => {
+	      const dbRoom: object = rooms.val() ?? {}
+	      const parsedRooms = Object.entries(dbRoom).map(([key,value]) => {
+		return {
+		  roomId: key,
+		  title: value.title,
+		  roomIsOpen: value.roomIsOpen
+		}
+	      })
+	      setRooms(parsedRooms)
+	})
+	
+Fiz as devidas tipagens de como eu queria esse objeto.
+	
+	type RoomType = {
+	  roomId:string;
+	  title: string;
+	  roomIsOpen?: boolean;
+	}[]
+	
+Agora só preciso utilizar <code>.map()</code> para me retornar as salas no formato que eu quero, porém, também quero mostrar algo caso não tenha nenhuma sala disponível.
+	
+Então crio a seguinte condicional: 
+	
+	{rooms.length !== 0 ? 
+		rooms.map((item: any) => {
+		  return(
+		    <div 
+		      className={`room-item-div ${item.roomIsOpen? '': 'closed'}`} 
+		      onClick={() => handleGoToRoom(item.roomId, item?.roomIsOpen)}
+		      key={item.roomId} >
+			  {item.title}
+		    </div>)}) 
+         : (
+		<div className="empty-list"> 
+		  <h1>Não temos salas no momento</h1>
+		  <img src={emptyImg} alt="Empty Room" />
+		</div>)}
+
+Agora, se rooms contém algum resultado vai aparecer: 
+	
+![Room List](.github/roomlist.png)
+	
+	
+	
+	
+E se não tiver resultado: 
+	
+	
+![Empty Room List](.github/emptyroomlist.png)
+	
+	
+<h2>Fechamento de salas</h2>
+	
+	
+	
