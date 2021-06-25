@@ -2,13 +2,17 @@
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a><br>
   <a href="#dia-1">Dia 1</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#levando-o-app-para-o-próximo-nível">Levando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#dia-2">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#dia-3">Licença</a>
+  <a href="#dia-2">Dia 2</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#dia-3">Dia 3</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#dia-4">Dia 4</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
    <br> Aplicativo desenvolvido durante a NLW 
 </p>
+
+
+
+
 ## ✨ Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
