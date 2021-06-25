@@ -65,13 +65,15 @@ export function Home() {
           </button>
           <div className="separator">ou entre em uma sala</div>
             <form onSubmit={handleJoinRoom}>
-              <input 
-                type="text" 
-                placeholder="Digite o código da sala" 
-                onChange={event => setRoomCode(event.target.value)}
-                value={roomCode}
-              />
-              <Button type="submit">Entrar na sala</Button>
+              <div className='input-button-div'>
+                <input 
+                  type="text" 
+                  placeholder="Digite o código da sala" 
+                  onChange={event => setRoomCode(event.target.value)}
+                  value={roomCode}
+                />
+                <Button type="submit">Entrar na sala</Button>
+              </div>
             </form>
         </div>
       </main>

@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useHistory } from 'react-router'
 import { useRoom } from '../hooks/useRoom'
 import logoImg from '../assets/images/logo.svg'
 import { Button } from '../components/Button'
@@ -20,8 +20,10 @@ type RoomParams = {
 export function Room() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
+  const history = useHistory()
   const [newQuestion, setNewQuestion] = useState('')
   const roomId = params.id;
+
   
   const { questions, title } = useRoom(roomId)
 
@@ -58,17 +60,21 @@ export function Room() {
     }
   }
 
+  function handleGoHomePage() {
+    return history.push('/')
+  }
+  
   return (
     <div id="page-room">
         <header>
           <div className='content'>
-            <img src={logoImg} alt=""/>
+            <img src={logoImg} alt="Let me Ask Logo" onClick={handleGoHomePage}/>
             <RoomCode code={roomId} />
           </div>
         </header>
         <main className="content">
           <div className="room-title">
-            <h1>Sala {title}</h1>
+            <h1>{title}</h1>
             {questions.length > 0 && <span>{questions.length} perguntas</span>}
           </div>
 

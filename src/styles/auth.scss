@@ -76,6 +76,21 @@
       button, input {
         width: 100%;
       }
+      .input-button-div{
+        display: flex;
+        max-height: 50px;
+
+        > button {
+          border-radius: 0 8px 8px 0;
+          margin-top: 0;
+          width: 40%;
+        }
+
+        > input {
+          border-radius: 8px 0 0 8px;
+          width: 70%;
+        }
+      }
     }
 
     p {

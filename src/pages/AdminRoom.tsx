@@ -55,12 +55,15 @@ export function AdminRoom() {
     });
   }
 
+  function handleGoHomePage() {
+    return history.push('/')
+  }
  
   return (
     <div id="page-room">
         <header>
           <div className='content'>
-            <img src={logoImg} alt=""/>
+            <img src={logoImg} alt="Let me Ask Logo" onClick={handleGoHomePage}/>
             <div>
               <RoomCode code={roomId} />
               <Button isOutlined onClick={handleEndRoom}>Encerrar sala </Button>
@@ -69,7 +72,7 @@ export function AdminRoom() {
         </header>
         <main className="content">
           <div className="room-title">
-            <h1>Sala {title}</h1>
+            <h1>{title}</h1>
             {questions.length > 0 && <span>{questions.length} perguntas</span>}
           </div>
 
