@@ -1,12 +1,35 @@
 <h1> LetMeAsk  </h1>
 
-<p>Aplicativo desenvolvido durante a NLW </p>
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a><br>
+  <a href="#dia-1">Dia 1</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#dia-2">Dia 2</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#dia-3">Dia 3</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#dia-4">Dia 4</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+   <br> Aplicativo desenvolvido durante a NLW 
+</p>
 
 
-<h4>Aqui vou fazer um breve resumo do que foi feito em cada dia</h4>
 
 
-<h1> Dia 1 </h1>
+## ✨ Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [React](https://reactjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Firebase](https://firebase.google.com/)
+
+## 💻 Projeto
+
+O letmeask é um app desenvolvido durante a NLW que permite que alguém realizando lives crie uma sala para receber perguntas, tendo maior interação com o usuário.
+
+## Levando o App para o próximo nível
+
+
+
+## Dia 1 
 <h2> Configuração de ambiente </h2>
 <p> Foi dado inicio ao aplicativo React com <code>create-react-app</code></p>
 <p>Tópicos que eu considerei importantes no dia:</p>
@@ -19,7 +42,7 @@
 </ul>
 
 
-<h1> Dia 2 </h1>
+## Dia 2 
 <h2> Páginas iniciais e autenticação </h2>
 <p> Uma bomba de conteúdo! Começamos com uma simples página com HTML e SCSS e então partimos para o início do método de autenticação. </p>
 <p> Primeiro fizemos a integração do <code>react-router-dom</code> para navegar pelas páginas, então fizemos o método de login pelo google utilizando o firebase. Com uma função assíncrona <code>async function signInWithGoogle()</code> definimos o provedor como <code>const provider = firebase.auth.GoogleAuthProvider()</code> e definimos o resultado como <code>const result = await auth.signInWithPopup(provider)</code></p>
@@ -53,7 +76,7 @@
       return value
     };
 
-<h1> Dia 3 </h1>
+## Dia 3 
 <h2> Criando novas salas e novas perguntas</h2>
 
 <p>Para criar uma nova sala no database do firebase precisamos da função 
@@ -217,7 +240,7 @@ e passamos os valores para os estados ainda dentro de <codeuseEffect()</code>
 Agora basta usarmos essas informações na interface. 
 
 
-<h1> Dia 4 </h1>
+## Dia 4 
 
 
 <h2>Estrutura das perguntas HTML e CSS</h2>
