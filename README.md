@@ -1,5 +1,11 @@
-<h1> LetMeAsk  </h1>
-<img src=".github/letmeaskhome.png>" alt="Let me ask Home Page" title="Home page"/>
+<div align="center" >   
+
+![Letmeasklogo](.github/Logo.png)    
+
+</div>
+
+![Letmeask](.github/letmeaskhome.png)
+
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a><br>
@@ -7,7 +13,10 @@
   <a href="#dia-2">Dia 2</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#dia-3">Dia 3</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#dia-4">Dia 4</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-   <br> Aplicativo desenvolvido durante a NLW 
+  <a href="#dia-5">Dia 5</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <br>	
+  <a href="#minhas-alterações-no-projeto">Minhas alterações no projeto</a>
+   
 </p>
 
 
@@ -24,9 +33,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 O letmeask é um app desenvolvido durante a NLW que permite que alguém realizando lives crie uma sala para receber perguntas, tendo maior interação com o usuário.
-
-## Levando o App para o próximo nível
-
 
 
 ## Dia 1 
@@ -451,3 +457,10 @@ E para evitar que pessoas entrem na sala colocamos no <code>handleJoinRoom()</co
 	
 Fim do dia 4! Ufa!
 
+
+	
+
+## Dia 5 
+
+
+## Minhas alterações no projeto
