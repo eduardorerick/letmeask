@@ -162,7 +162,11 @@
         @media screen and (max-width: 720px) {
         justify-content: center;
         align-items: center;
-
+        
+          .empty-list {
+            width: 100%;
+            text-align: center;
+          }
           .room-item-div {
             margin: 0 10px;
           }
@@ -185,6 +189,8 @@
           width: 300px;
           opacity: 0.9;
         }
+
+ 
       }
 
  
