@@ -605,7 +605,9 @@ E se não tiver resultado:
 ![Empty Room List](.github/emptyroomlist.png)
 	
 	
-<h2>Fechamento de salas</h2>
-	
-	
+<h2>Adicionando animações CSS</h2>
+
+Foi adicionado utilizando o site [Animista](https://animista.net/)
+![screen-capture](https://user-images.githubusercontent.com/82004348/123522184-2dfc2280-d692-11eb-90b9-81c42fa115a2.gif)
+
 	
