@@ -534,8 +534,8 @@ E a aplicação já está funcionando online.
 
 	
 ## Minhas alterações no projeto
-	
-	<h2> Criar a página de lista de salas </h2>
+
+<h2> Criar a página de lista de salas </h2>
 	
 	
 Primeiro criei um estado para armazenar esses dados.
