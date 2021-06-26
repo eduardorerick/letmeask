@@ -462,11 +462,11 @@ Fim do dia 4! Ufa!
 
 ## Dia 5 
 	
-	<h2> Criação dos botões  </h2>
-	
-	Muito HTML e CSS para as criações dos botões <code>handleCheckQuestionAsAnswered</code> e <code>handleHighlightQuestion</code>
-	
-	Foi atualizado as tipagens do component Questions 
+<h2> Criação dos botões  </h2>
+
+Muito HTML e CSS para as criações dos botões <code>handleCheckQuestionAsAnswered</code> e <code>handleHighlightQuestion</code>
+
+Foi atualizado as tipagens do component Questions 
 
 		type QuestionProps = {
 		  content: string;
@@ -478,8 +478,8 @@ Fim do dia 4! Ufa!
 		  isAnswered?: boolean;
 		  isHighlighted?: boolean;
 		}
-	
-	E então exporta esse componente recebendo <code>false</code> como a prop default 
+
+E então exporta esse componente recebendo <code>false</code> como a prop default 
 	
 	
 	export function Question({
@@ -490,7 +490,7 @@ Fim do dia 4! Ufa!
 	  children,
 	}
 	
-	E adicionado suas respectivas classes de acordo com o valor desses estados]
+E adicionado suas respectivas classes de acordo com o valor desses estados]
 	
 	 className={cx(
         'question',
@@ -498,15 +498,15 @@ Fim do dia 4! Ufa!
         { highlighted: isHighlighted && !isAnswered}
       )}
 	
-	
-	<h2>Hospedando o projeto</h2>
-	
+
+<h2>Hospedando o projeto</h2>
+
 O hosting é feito com o próprio hosting do Firebase.
 
 O primeiro passo é instalar o Firebase Tools
 
 	npm install -g firebase-tools
-	
+
 E então fazer o login no google
 	
 	firebase login
