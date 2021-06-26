@@ -7,8 +7,7 @@
 ![Letmeask](.github/letmeaskhome.png)
 
 <p align="center">
-	
-  [Visite o site aqui](https://letmeask-510c3.web.app/)<br>
+  <a href="https://letmeask-510c3.web.app">Visite o site aqui</a><br>
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a><br>
   <a href="#dia-1">Dia 1</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -18,7 +17,6 @@
   <a href="#dia-5">Dia 5</a>
   <br>	
   <a href="#minhas-alterações-no-projeto">Minhas alterações no projeto</a>
-   
 </p>
 
 
