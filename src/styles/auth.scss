@@ -156,5 +156,22 @@
     }
 
   }
+
+  @media screen and (max-width:720px) {
+    flex-direction: column-reverse;
+    margin: 0;
+    aside {
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      padding: 0;
+      > img {
+        width: 100px;
+      }
+    }
+    main {
+      flex:7;
+    }
+  }
 }
 

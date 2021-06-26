@@ -20,6 +20,7 @@ type RoomType = {
 export function RoomList() {
   const history = useHistory();
   const [rooms, setRooms] = useState<RoomType>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const dbRef = database.ref(`rooms`);
@@ -35,6 +36,7 @@ export function RoomList() {
 
       console.log(parsedRooms)
       setRooms(parsedRooms)
+      setIsLoading(false)
     })
   }, [])
 
@@ -62,7 +64,7 @@ export function RoomList() {
         <main className="content">
           <div className="question-list">
             <div className='room-box-div'>
-              {rooms.length !== 0 ? 
+              {rooms.length !== 0 && isLoading === false ? 
                 rooms.map((item: any) => {return(<div className={`room-item-div ${item.roomIsOpen? '': 'closed'}`} onClick={() => handleGoToRoom(item.roomId, item?.roomIsOpen)}key={item.roomId} >{item.title}</div>)}) 
                 : (
                 <div className="empty-list"> 

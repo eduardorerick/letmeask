@@ -65,7 +65,7 @@ export function AdminRoom() {
         <header>
           <div className='content'>
             <img src={logoImg} alt="Let me Ask Logo" onClick={handleGoHomePage}/>
-            <div>
+            <div className="header-buttons-div">
               <RoomCode code={roomId} />
               <Button isOutlined onClick={handleEndRoom}>Encerrar sala </Button>
             </div>

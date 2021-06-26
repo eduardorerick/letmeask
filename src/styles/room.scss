@@ -14,6 +14,15 @@
         max-height: 45px;
         cursor: pointer;
       }
+      
+      @media screen and (max-width:720px) {
+        flex-direction: column;
+        gap: 10px;
+        .header-buttons-div {
+          display: flex;
+          flex-direction: column;
+        }
+      }
 
       > div {
         display:flex;
@@ -149,6 +158,15 @@
           color: black;
           }
         }
+
+        @media screen and (max-width: 720px) {
+        justify-content: center;
+        align-items: center;
+
+          .room-item-div {
+            margin: 0 10px;
+          }
+        }
       }
 
       .empty-list {
@@ -170,6 +188,10 @@
       }
 
  
+    }
+
+    @media screen and (max-width:720px) {
+      margin: 0 13px;
     }
   }
 }
