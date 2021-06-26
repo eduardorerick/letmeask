@@ -461,11 +461,81 @@ Fim do dia 4! Ufa!
 	
 
 ## Dia 5 
-
-
-## Minhas alterações no projeto
 	
-	<h2> Criar a página de lista de salas </h2>
+<h2> Criação dos botões  </h2>
+
+Muito HTML e CSS para as criações dos botões <code>handleCheckQuestionAsAnswered</code> e <code>handleHighlightQuestion</code>
+
+Foi atualizado as tipagens do component Questions 
+
+		type QuestionProps = {
+		  content: string;
+		  author: {
+		    name: string;
+		    avatar: string;
+		  }
+		  children?: ReactNode;
+		  isAnswered?: boolean;
+		  isHighlighted?: boolean;
+		}
+
+E então exporta esse componente recebendo <code>false</code> como a prop default 
+	
+	
+	export function Question({
+	  content,
+	  author,
+	  isAnswered = false,
+	  isHighlighted = false,
+	  children,
+	}
+	
+E adicionado suas respectivas classes de acordo com o valor desses estados]
+	
+	 className={cx(
+        'question',
+        { answered: isAnswered},
+        { highlighted: isHighlighted && !isAnswered}
+      )}
+	
+
+<h2>Hospedando o projeto</h2>
+
+O hosting é feito com o próprio hosting do Firebase.
+
+O primeiro passo é instalar o Firebase Tools
+
+	npm install -g firebase-tools
+
+E então fazer o login no google
+	
+	firebase login
+
+Ir para a pasta do projeto e executar este comando no diretório raiz do seu app:
+	
+	firebase init
+	
+E precisamos dizer quais features estamos usando do Firebase, no nosso caso: Realtime Database e Hosting. 
+Escolhemos usar um projeto já existente e selecionamos o public diretory : build, que é o arquivo que o create-react-app gera os arquivos para produção.
+Perguntam se é uma SPA e respondemos que sim.
+
+Agora que temos o firebase.json e os outros arquivos na nossa aplicação estamos prontos para por em produção. 
+	
+Rodamos a build do projeto  
+	
+	yarn build
+	
+e iniciamos o deploy. 
+	
+	firebase deploy
+	
+E a aplicação já está funcionando online. 
+	
+
+	
+## Minhas alterações no projeto
+
+<h2> Criar a página de lista de salas </h2>
 	
 	
 Primeiro criei um estado para armazenar esses dados.
@@ -495,7 +565,7 @@ Então li todos os dados e retornei eles em um array contendo vários objetos.
 	      setRooms(parsedRooms)
 	})
 	
-Fiz as devidas tipagens de como eu queria esse objeto.
+Fiz as devidas tipagens de como eu queria esse objeto dentro do array.
 	
 	type RoomType = {
 	  roomId:string;
