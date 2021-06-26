@@ -32,13 +32,10 @@ export function RoomList() {
           roomIsOpen: value.roomIsOpen
         }
       })
-      console.log(dbRoom)
-      console.log(Object.entries(dbRoom))
-      console.log(parsedRooms)
 
+      console.log(parsedRooms)
       setRooms(parsedRooms)
     })
-
   }, [])
 
   function handleGoHomePage() {
