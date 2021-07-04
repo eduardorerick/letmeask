@@ -37,7 +37,7 @@ O letmeask é um app desenvolvido durante a NLW que permite que alguém realizan
 
 ## Dia 1 
 <h2> Configuração de ambiente </h2>
-<p> Foi dado inicio ao aplicativo React com <code>yarn create react-app --template typescript</code></p>
+<p> Foi dado inicio ao aplicativo React com <code>yarn create react-app letmeask --template typescript</code></p>
 <p>Tópicos que eu considerei importantes no dia:</p>
 <ul>
   <li> Introdução ao Typescript </li>
